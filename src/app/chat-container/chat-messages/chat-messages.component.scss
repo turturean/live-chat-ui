@@ -1,0 +1,32 @@
+@use '../../../colours' as colors;
+
+.chat-message {
+  display: flex;
+  justify-content: flex-start;
+
+  &__own {
+    justify-content: end;
+
+    .chat-message__item {
+      border-radius: 0.5rem 0.5rem 0 0.5rem;
+    }
+
+    .chat-message__date {
+      text-align: end;
+    }
+  }
+}
+
+.chat-message__item {
+  padding: 0.5rem;
+  margin: 0.5rem;
+  border-radius: 0.5rem 0.5rem 0.5rem 0;
+  border: 0.1rem solid colors.$chat-message-text-border-color;
+  background: colors.$chat-message-text-bg-color;
+}
+
+.chat-message__date {
+  font-size: colors.$chat-message-date-text-size;
+  color: colors.$chat-message-date-color;
+  padding-top: 0.5rem;
+}

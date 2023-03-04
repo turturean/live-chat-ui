@@ -1,0 +1,7 @@
+<mat-card class="chat-container">
+  <chat-messages
+    [messages]="(messages$ | async)!"
+    [userId]="userId"
+  ></chat-messages>
+  <chat-write-form (sendMessage)="sendMessage($event)"></chat-write-form>
+</mat-card>

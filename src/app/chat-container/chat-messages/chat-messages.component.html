@@ -1,0 +1,16 @@
+<div
+  *ngFor="let message of messages"
+  [ngClass]="{ 'chat-message__own': userId === message.userId }"
+  class="chat-message"
+>
+  <div class="chat-message__item">
+    <div
+      class="chat-message__text"
+      [innerHTML]="message.text | textFormat"
+    ></div>
+
+    <div class="chat-message__date">
+      {{ message.createAt | date : 'MMM d, y, h:mm:ss a' }}
+    </div>
+  </div>
+</div>
