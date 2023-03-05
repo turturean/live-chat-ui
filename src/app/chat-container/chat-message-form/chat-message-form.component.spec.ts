@@ -3,16 +3,16 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { ChatWriteFormComponent } from './chat-write-form.component';
+import { ChatMessageFormComponent } from './chat-message-form.component';
 import { By } from '@angular/platform-browser';
 
-describe('ChatWriteFormComponent', () => {
-  let component: ChatWriteFormComponent;
-  let fixture: ComponentFixture<ChatWriteFormComponent>;
+describe('ChatMessageFormComponent', () => {
+  let component: ChatMessageFormComponent;
+  let fixture: ComponentFixture<ChatMessageFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ChatWriteFormComponent],
+      declarations: [ChatMessageFormComponent],
       imports: [
         ReactiveFormsModule,
         MatFormFieldModule,
@@ -21,7 +21,7 @@ describe('ChatWriteFormComponent', () => {
       ],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ChatWriteFormComponent);
+    fixture = TestBed.createComponent(ChatMessageFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
