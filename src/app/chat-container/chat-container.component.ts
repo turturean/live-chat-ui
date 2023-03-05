@@ -1,56 +1,31 @@
-import { Component, Inject } from '@angular/core';
+import { AfterViewChecked, Component, Inject, OnDestroy } from '@angular/core';
+import { Subject, takeUntil, tap } from 'rxjs';
+import { DOCUMENT } from '@angular/common';
 import { ChatService } from './services/chat.service';
 import { Message } from './types';
-import { BehaviorSubject } from 'rxjs';
-import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'chat-ui-chat-container',
   templateUrl: './chat-container.component.html',
   styleUrls: ['./chat-container.component.scss'],
 })
-export class ChatContainerComponent {
+export class ChatContainerComponent implements OnDestroy, AfterViewChecked {
   userId = Math.random();
-  messages$ = new BehaviorSubject<Message[]>([
-    {
-      userId: 2,
-      text: "Hey, there! It's been a while!",
-      createAt: new Date().toUTCString(),
-    },
-    {
-      userId: 2,
-      text: ' Wanted to know if you wanted to get lunch sometime this week?',
-      createAt: new Date().toUTCString(),
-    },
-    {
-      userId: 2,
-      text: "  Or next week. I'm also free during the evenings next week.",
-      createAt: new Date().toUTCString(),
-    },
-    {
-      userId: 2,
-      text: 'Oops! Sorry for the late response',
-      createAt: new Date().toUTCString(),
-    },
-    {
-      userId: 3,
-      text: " I'd love to get lunch sometime next week!",
-      createAt: new Date().toUTCString(),
-    },
-    {
-      userId: 3,
-      text: "Do you have any places in mind where you'd want to meet?",
-      createAt: new Date().toUTCString(),
-    },
-  ]);
+  messages: Message[] = [];
+
+  alive$ = new Subject();
 
   constructor(
     public chatService: ChatService,
     @Inject(DOCUMENT) private document: Document
   ) {
-    this.chatService.getMessage().subscribe((message) => {
-      this.messages$.next([...this.messages$.value, message]);
-    });
+    this.chatService
+      .getMessage()
+      .pipe(
+        takeUntil(this.alive$),
+        tap((message) => (this.messages = [...this.messages, message]))
+      )
+      .subscribe();
   }
 
   sendMessage(text: string): void {
@@ -59,6 +34,11 @@ export class ChatContainerComponent {
 
   ngAfterViewChecked() {
     this.scrollToLastMessage();
+  }
+
+  ngOnDestroy() {
+    this.alive$.next(null);
+    this.alive$.complete();
   }
 
   private scrollToLastMessage() {
