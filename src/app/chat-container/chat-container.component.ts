@@ -1,9 +1,8 @@
-import { Component, ElementRef, Inject, ViewChild } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { ChatService } from './services/chat.service';
 import { Message } from './types';
 import { BehaviorSubject } from 'rxjs';
 import { DOCUMENT } from '@angular/common';
-import { ChatMessagesComponent } from './chat-messages/chat-messages.component';
 
 @Component({
   selector: 'chat-ui-chat-container',
@@ -59,6 +58,10 @@ export class ChatContainerComponent {
   }
 
   ngAfterViewChecked() {
+    this.scrollToLastMessage();
+  }
+
+  private scrollToLastMessage() {
     const chatMessages = this.document.querySelector('chat-messages');
 
     if (chatMessages) {
