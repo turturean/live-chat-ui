@@ -1,13 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Socket, SocketIoConfig } from 'ngx-socket-io';
+import { Socket } from 'ngx-socket-io';
+import { environment } from '../../../environments/environment';
 
-const config: SocketIoConfig = {
-  url: 'ws://localhost:3001/',
-  options: { autoConnect: true },
-};
 @Injectable()
 export class ChatSocketService extends Socket {
   constructor() {
-    super(config);
+    super(environment.socketConfig);
   }
 }
