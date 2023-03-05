@@ -10,15 +10,15 @@ export class ChatMessageFormComponent {
   @Output() sendMessage = new EventEmitter<string>();
 
   formGroup = this.fb.group({
-    message: new FormControl<string>(''),
+    text: new FormControl<string>(''),
   });
   constructor(private fb: FormBuilder) {}
 
   send(event: Event) {
     event.stopPropagation();
-    const message = this.formGroup.value.message as string;
+    const message = this.formGroup.value.text as string;
 
     this.sendMessage.emit(message);
-    this.formGroup.setValue({ message: '' });
+    this.formGroup.setValue({ text: '' });
   }
 }

@@ -44,7 +44,7 @@ export class ChatContainerComponent implements OnDestroy, AfterViewChecked {
   private scrollToLastMessage() {
     const chatMessages = this.document.querySelector('chat-messages');
 
-    if (chatMessages) {
+    if (chatMessages && chatMessages.scrollTo) {
       chatMessages.scrollTo({
         top: chatMessages.scrollHeight,
         behavior: 'smooth',

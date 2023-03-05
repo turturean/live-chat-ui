@@ -2,7 +2,7 @@
   <mat-form-field appearance="outline">
     <textarea
       matInput
-      formControlName="message"
+      formControlName="text"
       placeholder="Write a message ..."
     ></textarea>
   </mat-form-field>
@@ -11,7 +11,7 @@
 <button
   color="primary"
   mat-raised-button
-  [disabled]="!formGroup.controls.message.value"
+  [disabled]="!formGroup.controls.text.value"
   (click)="send($event)"
 >
   Send

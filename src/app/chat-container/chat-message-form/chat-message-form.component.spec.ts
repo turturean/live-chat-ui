@@ -31,7 +31,7 @@ describe('ChatMessageFormComponent', () => {
   });
 
   it('should send button to be disabled when the message is empty', () => {
-    component.formGroup.setValue({ message: '' });
+    component.formGroup.setValue({ text: '' });
     fixture.detectChanges();
 
     expect(
@@ -40,7 +40,7 @@ describe('ChatMessageFormComponent', () => {
   });
 
   it('should send button to be enabled when the message is not empty', () => {
-    component.formGroup.setValue({ message: 'test' });
+    component.formGroup.setValue({ text: 'test' });
     fixture.detectChanges();
 
     expect(
@@ -49,7 +49,7 @@ describe('ChatMessageFormComponent', () => {
   });
 
   it('should emit called setValue emitter when user clicked on send button', () => {
-    component.formGroup.setValue({ message: 'test' });
+    component.formGroup.setValue({ text: 'test' });
     jest.spyOn(component.sendMessage, 'emit');
 
     fixture.detectChanges();
@@ -60,12 +60,12 @@ describe('ChatMessageFormComponent', () => {
   });
 
   it('should clear the form when user clicked on send button', () => {
-    component.formGroup.setValue({ message: 'test' });
+    component.formGroup.setValue({ text: 'test' });
     jest.spyOn(component.sendMessage, 'emit');
 
     fixture.detectChanges();
     fixture.debugElement.query(By.css('button')).nativeElement.click();
 
-    expect(component.formGroup.controls.message.value).toBe('');
+    expect(component.formGroup.controls.text.value).toBe('');
   });
 });
