@@ -16,12 +16,9 @@ export class ChatWriteFormComponent {
 
   send(event: Event) {
     event.stopPropagation();
+    const message = this.formGroup.value.message as string;
 
-    if (this.formGroup.controls.message.valid) {
-      const message = this.formGroup.value.message as string;
-
-      this.sendMessage.emit(message);
-      this.formGroup.setValue({ message: '' });
-    }
+    this.sendMessage.emit(message);
+    this.formGroup.setValue({ message: '' });
   }
 }
