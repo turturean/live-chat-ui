@@ -30,3 +30,7 @@
   color: colors.$chat-message-date-color;
   padding-top: 0.5rem;
 }
+
+.chat-message__text {
+  word-break: break-all;
+}
