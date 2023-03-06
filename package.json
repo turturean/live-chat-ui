@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "nx serve --proxyConfig ./proxy.conf.json",
+    "start": "nx serve --proxyConfig=./proxy.conf.json",
     "build": "nx build",
+    "docker:build:image": "docker build --platform=linux/amd64 -t live-chat-ui -f ./Dockerfile .",
     "test": "nx test"
   },
   "private": true,
