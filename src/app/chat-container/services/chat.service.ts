@@ -8,11 +8,11 @@ export class ChatService {
   constructor(private socket: ChatSocketService) {}
 
   sendMessage(payload: CreateMessage) {
-    this.socket.emit(MessageEvents.Message, JSON.stringify(payload));
+    this.socket.emit(MessageEvents.Message, payload);
   }
   getMessage() {
     return this.socket
-      .fromEvent<string>(MessageEvents.Message)
-      .pipe(map((data) => JSON.parse(data) as Message));
+      .fromEvent<Message>(MessageEvents.Message)
+      .pipe(map((data) => data));
   }
 }
