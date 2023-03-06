@@ -1,0 +1,6 @@
+{
+  "/socket.io": {
+    "target": "ws://localhost:3001",
+    "secure": false
+  }
+}

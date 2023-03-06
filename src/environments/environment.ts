@@ -1,9 +1,11 @@
-import {Environment} from "./types";
+import { Environment } from './types';
 
 export const environment: Environment = {
   production: false,
   socketConfig: {
-    url: 'ws://localhost:3001/',
-    options: { autoConnect: true },
-  }
+    url: 'ws://localhost:4200/',
+    options: {
+      autoConnect: true,
+    },
+  },
 };
